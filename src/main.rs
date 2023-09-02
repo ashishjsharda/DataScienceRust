@@ -1,4 +1,7 @@
+mod mean;
+
 use std::fmt;
+use ndarray::Array1;
 
 struct Data {
     values: Vec<f64>,
@@ -8,6 +11,8 @@ impl Data {
     fn new(values: Vec<f64>) -> Self {
         Self { values }
     }
+
+
 
     fn variance(&self) -> f64 {
         let mean = self.mean();
@@ -23,6 +28,7 @@ impl Data {
         let sum: f64 = self.values.iter().sum();
         sum / (self.values.len() as f64)
     }
+
 }
 
 impl fmt::Display for Data {
@@ -36,4 +42,8 @@ fn main() {
     println!("Data: {}", data);
     let variance = data.variance();
     println!("Variance: {}", variance);
+    let data2=Array1::from(vec![1.0,2.0,3.0,4.0,5.0]);
+    let mean2=mean::mean(&data2);
+    println!("Mean: {}",mean2);
+
 }
